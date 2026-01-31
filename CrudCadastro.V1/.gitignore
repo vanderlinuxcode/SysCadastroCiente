@@ -1,0 +1,20 @@
+---
+
+### `.gitignore` recomendado
+Adicione este arquivo na raiz do projeto:
+
+```gitignore
+# Ignorar arquivos compilados
+*.class
+
+# Ignorar diretório bin
+/bin/
+
+# Ignorar arquivos temporários
+*.log
+*.tmp
+
+# Ignorar configurações locais
+/.idea/
+/.vscode/
+
