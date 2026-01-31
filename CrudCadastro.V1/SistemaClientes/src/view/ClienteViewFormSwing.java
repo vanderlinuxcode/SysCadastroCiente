@@ -13,8 +13,6 @@ import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
-import java.awt.Color;
 import javax.swing.event.DocumentListener;
 
 /**
@@ -69,18 +67,7 @@ public class ClienteViewFormSwing extends JFrame {
         aplicarRestauracao(telefoneField, telefoneError);
         aplicarRestauracao(cpfField, cpfError);
     }
-    
-//    private void initComponents() {
-//        // inicialize seus campos aqui
-//        nomeField = new JTextField(20);
-//        nomeField.setName("nome");
-//        nomeError.setForeground(Color.RED);
-//        nomeField = new JTextField(20);
-//        nomeField.setName("idade");
-//        nomeError.setForeground(Color.RED);
-        
-        // repita para os demais campos...
-  //  }
+
     private void limparCampos() {
         nomeField.setText("");
         idadeField.setText("");
@@ -147,6 +134,7 @@ public class ClienteViewFormSwing extends JFrame {
             //errorLabel.setMinimumSize(new Dimension(150, 20));
         }
 
+        // Layout do formulário
         GroupLayout layout = new GroupLayout(painel);
         painel.setLayout(layout);
         layout.setAutoCreateGaps(true);
@@ -317,6 +305,7 @@ public class ClienteViewFormSwing extends JFrame {
         return new Cliente(id, nome, idade, email, telefone, cpf);
     }
 
+    // Cadastra um novo cliente a partir dos dados do formulário
     private void cadastrarCliente() {
         try {
             String nome = nomeField.getText().trim();
@@ -338,7 +327,7 @@ public class ClienteViewFormSwing extends JFrame {
         }
     }
     
-        
+    // Aplica restauração visual ao campo e remove mensagem de erro
     private void aplicarRestauracao(JTextField campo, JLabel erroLabel) {
         System.out.println("Aplicando restauração para: " + campo.getName());
 
@@ -353,9 +342,8 @@ public class ClienteViewFormSwing extends JFrame {
             }
         });
     }
-
-
     
+    // Prepara os campos para edição de um cliente selecionado na tabela
     private void prepararEdicaoCliente() {
         int linha = tabela.getSelectedRow();
         if (linha == -1) {
@@ -379,6 +367,7 @@ public class ClienteViewFormSwing extends JFrame {
         JOptionPane.showMessageDialog(this, "Modo de edição ativado. Altere os dados e clique em 'Salvar Alterações'.");
     }
 
+    // Salva alterações feitas em um cliente em edição
     private void salvarAlteracoesCliente() {
         try {
             Cliente cliente = montarCliente(clienteEmEdicaoId);
@@ -395,7 +384,8 @@ public class ClienteViewFormSwing extends JFrame {
             JOptionPane.showMessageDialog(this, "Erro inesperado: " + ex.getMessage());
         }
     }
-        
+
+    // Exclui cliente selecionado na tabela        
         private void excluirCliente() {
             int linha = tabela.getSelectedRow();
             if (linha == -1) {
@@ -434,6 +424,7 @@ public class ClienteViewFormSwing extends JFrame {
             }
         }
 
+        // Exibe mensagens de erro nos campos correspondentes
         private void exibirErros(Map<String, String> erros) {
             for (Map.Entry<String, String> erro : erros.entrySet()) {
                 switch (erro.getKey()) {
@@ -461,7 +452,8 @@ public class ClienteViewFormSwing extends JFrame {
             }
         }
 
-	public static void main(String[] args) {		
+        // Método main: inicializa a aplicação com LookAndFeel Nimbus
+        	public static void main(String[] args) {		
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {

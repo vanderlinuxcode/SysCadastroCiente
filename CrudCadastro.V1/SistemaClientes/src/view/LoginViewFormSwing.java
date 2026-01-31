@@ -6,15 +6,17 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
+// Classe responsável pela interface gráfica de login do sistema
 public class LoginViewFormSwing extends JFrame {
     private static final long serialVersionUID = 1L;
 
     private JTextField usuarioField;
     private JPasswordField senhaField;
     @SuppressWarnings("unused")
-	private LoginController loginController = new LoginController();
+    private LoginController loginController = new LoginController();
     private Map<String, String> usuariosValidos = new HashMap<>();
 
+    // Construtor: inicializa a janela de login
     public LoginViewFormSwing() {
         setTitle("Login - Sistema de Clientes");
         setSize(420, 250);
@@ -33,6 +35,7 @@ public class LoginViewFormSwing extends JFrame {
         add(createButtonPanel(), BorderLayout.SOUTH);
     }
 
+    // Cria o cabeçalho da tela de login
     private JPanel createHeader() {
         JLabel titulo = new JLabel("Acesso ao Sistema");
         titulo.setFont(new Font("SansSerif", Font.BOLD, 20));
@@ -45,6 +48,7 @@ public class LoginViewFormSwing extends JFrame {
         return header;
     }
 
+    // Cria o painel com campos de usuário e senha
     private JPanel createLoginPanel() {
         usuarioField = new JTextField(20);
         senhaField = new JPasswordField(20);
@@ -76,6 +80,7 @@ public class LoginViewFormSwing extends JFrame {
         return panel;
     }
 
+    // Cria o painel com botão de login
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(245, 245, 245));
@@ -92,6 +97,7 @@ public class LoginViewFormSwing extends JFrame {
         return panel;
     }
 
+    // Realiza autenticação do usuário
     private void autenticar() {
         String usuario = usuarioField.getText().trim();
         String senha = new String(senhaField.getPassword());
@@ -116,7 +122,7 @@ public class LoginViewFormSwing extends JFrame {
         }
     }
 
-
+    // Método main: inicializa a aplicação com LookAndFeel Nimbus
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");

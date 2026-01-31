@@ -1,12 +1,14 @@
 package dao;
 
 import model.Cliente;
-//import controller.ClienteController;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// DAO responsável pelas operações de persistência de Cliente
 public class ClienteDAO {
+
+    // Insere um novo cliente no banco de dados
     public void inserir(Cliente cliente) {
         String sql = "INSERT INTO clientes (nome, idade, email, telefone, cpf) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = Conexao.conectar();
@@ -23,6 +25,7 @@ public class ClienteDAO {
         }
     }
 
+    // Lista todos os clientes cadastrados
     public List<Cliente> listar() {
         List<Cliente> lista = new ArrayList<>();
         String sql = "SELECT * FROM clientes";
@@ -45,6 +48,7 @@ public class ClienteDAO {
         return lista;
     }
 
+    // Atualiza os dados de um cliente existente
     public boolean atualizar(Cliente cliente) {
         String sql = "UPDATE clientes SET nome = ?, idade = ?, email = ?, telefone = ?, cpf = ? WHERE id = ?";
         try (Connection conn = Conexao.conectar();
@@ -63,6 +67,7 @@ public class ClienteDAO {
         }
     }
 
+    // Exclui um cliente pelo ID
     public void excluir(int id) {
         String sql = "DELETE FROM clientes WHERE id = ?";
         try (Connection conn = Conexao.conectar();
@@ -74,6 +79,8 @@ public class ClienteDAO {
             System.out.println("Erro ao excluir cliente: " + e.getMessage());
         }
     }
+
+    // Testa a conexão com o banco de dados
     public boolean testarConexao() {
         return Conexao.testarConexao();
     }
